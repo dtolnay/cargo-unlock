@@ -1,3 +1,5 @@
+#![allow(clippy::or_fun_call)]
+
 use anyhow::{Context, Result};
 use serde::Deserialize;
 use std::env;
