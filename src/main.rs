@@ -15,8 +15,8 @@ fn main() -> Result<()> {
     let cargo = env::var_os("CARGO").unwrap_or(OsString::from("cargo"));
     let output = Command::new(cargo)
         .arg("metadata")
-        .arg("--format-version")
-        .arg("1")
+        .arg("--no-deps")
+        .arg("--format-version=1")
         .stderr(Stdio::inherit())
         .output()
         .context("Failed to invoke `cargo`")?;
