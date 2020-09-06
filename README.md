@@ -33,8 +33,10 @@ Cargo can proceed. Install by running `cargo install cargo-rm`.
 
 - It works if run from a subdirectory of a crate rather than the crate root.
 
-- If like me you use `export FIGNORE=argo.lock` in your shell so that all
-  autocompletes prefer Cargo.toml over Cargo.lock, this is easier to type.
+- If like me you use [`export FIGNORE=argo.lock`][FIGNORE] in your shell so that
+  all autocompletes prefer Cargo.toml over Cargo.lock, this is easier to type.
+
+[FIGNORE]: https://www.gnu.org/software/bash/manual/bash.html#index-FIGNORE
 
 <br>
 
