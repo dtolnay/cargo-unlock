@@ -18,7 +18,8 @@ fn main() -> Result<()> {
         .arg("--format-version")
         .arg("1")
         .stderr(Stdio::inherit())
-        .output()?;
+        .output()
+        .context("Failed to invoke `cargo`")?;
     let metadata: Metadata = serde_json::from_slice(&output.stdout)
         .context("Failed to parse project metadata from Cargo")?;
     let workspace_lockfile = metadata.workspace_root.join("Cargo.lock");
