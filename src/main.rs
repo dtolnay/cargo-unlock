@@ -4,7 +4,7 @@ use std::env;
 use std::ffi::OsString;
 use std::fs;
 use std::path::PathBuf;
-use std::process::Command;
+use std::process::{Command, Stdio};
 
 #[derive(Deserialize)]
 struct Metadata {
@@ -17,6 +17,7 @@ fn main() -> Result<()> {
         .arg("metadata")
         .arg("--format-version")
         .arg("1")
+        .stderr(Stdio::inherit())
         .output()?;
     let metadata: Metadata = serde_json::from_slice(&output.stdout)
         .context("Failed to parse project metadata from Cargo")?;
