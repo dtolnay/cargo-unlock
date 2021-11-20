@@ -9,7 +9,7 @@ documentation = "https://github.com/dtolnay/cargo-rm"
 keywords = ["cargo", "subcommand"]
 categories = ["development-tools::cargo-plugins"]
 edition = "2018"
-rust-version = "1.34"
+rust-version = "1.38"
 readme = "README.md"
 
 [dependencies]
