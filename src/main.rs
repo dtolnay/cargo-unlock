@@ -8,6 +8,8 @@ use std::fs;
 use std::path::PathBuf;
 use std::process::{self, Command, Stdio};
 
+cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
+
 #[derive(Deserialize)]
 struct Metadata {
     workspace_root: PathBuf,
