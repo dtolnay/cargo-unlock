@@ -51,3 +51,8 @@ fn main() -> Result<()> {
 
     Ok(())
 }
+
+#[test]
+fn test_cli() {
+    <Cli as clap::CommandFactory>::command().debug_assert();
+}
