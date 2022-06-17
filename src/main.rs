@@ -1,6 +1,7 @@
 #![allow(clippy::or_fun_call)]
 
 use anyhow::{Context, Result};
+use clap::Parser;
 use serde::Deserialize;
 use std::env;
 use std::ffi::OsString;
@@ -10,12 +11,21 @@ use std::process::{self, Command, Stdio};
 
 cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
 
+#[derive(Parser, Debug)]
+#[clap(name = "cargo-rm", bin_name = "cargo", author, version)]
+enum Cli {
+    #[clap(name = "rm", author, version, about = "Remove Cargo.lock lockfile")]
+    Rm {},
+}
+
 #[derive(Deserialize)]
 struct Metadata {
     workspace_root: PathBuf,
 }
 
 fn main() -> Result<()> {
+    let _ = Cli::parse();
+
     let cargo = env::var_os("CARGO").unwrap_or(OsString::from("cargo"));
     let output = Command::new(cargo)
         .arg("metadata")
