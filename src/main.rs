@@ -15,7 +15,11 @@ cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
 #[clap(name = "cargo-rm", bin_name = "cargo", author, version)]
 enum Cli {
     #[clap(name = "rm", author, version, about = "Remove Cargo.lock lockfile")]
-    Rm {},
+    Rm {
+        /// Path to Cargo.toml
+        #[clap(long, value_name = "PATH", action)]
+        manifest_path: Option<PathBuf>,
+    },
 }
 
 #[derive(Deserialize)]
@@ -24,11 +28,16 @@ struct Metadata {
 }
 
 fn main() -> Result<()> {
-    let _ = Cli::parse();
+    let Cli::Rm { manifest_path } = Cli::parse();
 
     let cargo = env::var_os("CARGO").unwrap_or(OsString::from("cargo"));
-    let output = Command::new(cargo)
-        .arg("metadata")
+    let mut command = Command::new(cargo);
+    command.arg("metadata");
+    if let Some(manifest_path) = manifest_path {
+        command.arg("--manifest-path");
+        command.arg(manifest_path);
+    }
+    let output = command
         .arg("--no-deps")
         .arg("--format-version=1")
         .stderr(Stdio::inherit())
