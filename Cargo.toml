@@ -15,6 +15,7 @@ readme = "README.md"
 [dependencies]
 anyhow = "1.0"
 cargo-subcommand-metadata = "0.1"
+clap = { version = "3.2.5", features = ["deprecated", "derive", "wrap_help"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
