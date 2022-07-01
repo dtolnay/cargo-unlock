@@ -1,8 +1,8 @@
-# cargo rm
+# cargo unlock
 
-[<img alt="github" src="https://img.shields.io/badge/github-dtolnay/cargo--rm-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/dtolnay/cargo-rm)
-[<img alt="crates.io" src="https://img.shields.io/crates/v/cargo-rm.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/cargo-rm)
-[<img alt="build status" src="https://img.shields.io/github/workflow/status/dtolnay/cargo-rm/CI/master?style=for-the-badge" height="20">](https://github.com/dtolnay/cargo-rm/actions?query=branch%3Amaster)
+[<img alt="github" src="https://img.shields.io/badge/github-dtolnay/cargo--unlock-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/dtolnay/cargo-unlock)
+[<img alt="crates.io" src="https://img.shields.io/crates/v/cargo-unlock.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/cargo-unlock)
+[<img alt="build status" src="https://img.shields.io/github/workflow/status/dtolnay/cargo-unlock/CI/master?style=for-the-badge" height="20">](https://github.com/dtolnay/cargo-unlock/actions?query=branch%3Amaster)
 
 New Cargo versions sometimes write out a lockfile that triggers parse failures
 in old Cargo versions.
@@ -19,14 +19,14 @@ Caused by:
   invalid serialized PackageId for key `package.dependencies`
 ```
 
-The `cargo rm` subcommand simply deletes the offending lockfile so that the old
-Cargo can proceed. Install by running `cargo install cargo-rm`.
+The `cargo unlock` subcommand simply deletes the offending lockfile so that the
+old Cargo can proceed. Install by running `cargo install cargo-unlock`.
 
 <br>
 
 ### vs `rm Cargo.lock`
 
-`cargo rm` has three advantages:
+`cargo unlock` has three advantages:
 
 - It still works if run from a workspace member, where the lockfile would be
   located at the workspace root rather than the current directory.

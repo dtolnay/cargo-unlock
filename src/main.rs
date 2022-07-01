@@ -12,9 +12,9 @@ use std::process::{self, Command, Stdio};
 cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
 
 #[derive(Parser, Debug)]
-#[clap(name = "cargo-rm", bin_name = "cargo", author, version)]
+#[clap(name = "cargo-unlock", bin_name = "cargo", author, version)]
 enum Cli {
-    #[clap(name = "rm", author, version, about = "Remove Cargo.lock lockfile")]
+    #[clap(name = "unlock", author, version, about = "Remove Cargo.lock lockfile")]
     Rm {
         /// Path to Cargo.toml
         #[clap(long, value_name = "PATH", action)]

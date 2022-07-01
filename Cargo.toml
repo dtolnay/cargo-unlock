@@ -1,11 +1,11 @@
 [package]
-name = "cargo-rm"
+name = "cargo-unlock"
 version = "1.0.3"
 authors = ["David Tolnay <dtolnay@gmail.com>"]
 license = "MIT OR Apache-2.0"
 description = "Remove Cargo.lock lockfile"
-repository = "https://github.com/dtolnay/cargo-rm"
-documentation = "https://github.com/dtolnay/cargo-rm"
+repository = "https://github.com/dtolnay/cargo-unlock"
+documentation = "https://github.com/dtolnay/cargo-unlock"
 keywords = ["cargo", "subcommand"]
 categories = ["development-tools::cargo-plugins"]
 edition = "2021"
