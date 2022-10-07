@@ -34,7 +34,7 @@ old Cargo can proceed. Install by running `cargo install cargo-unlock`.
 - It works if run from a subdirectory of a crate rather than the crate root.
 
 - If like me you use
-  <code>export <a href="https://www.gnu.org/software/bash/manual/bash.html#index-FIGNORE">FIGNORE</a>=argo.lock</code>
+  <code>export <a href="https://www.gnu.org/software/bash/manual/bash.html#index-FIGNORE">FIGNORE</a>=Cargo.lock</code>
   in your shell so that all autocompletes prefer Cargo.toml over Cargo.lock,
   this is easier to type.
 
