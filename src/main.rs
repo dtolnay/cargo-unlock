@@ -2,7 +2,7 @@
 
 use anyhow::{Context, Result};
 use clap::Parser;
-use serde::Deserialize;
+use serde_derive::Deserialize;
 use std::env;
 use std::ffi::OsString;
 use std::fs;
