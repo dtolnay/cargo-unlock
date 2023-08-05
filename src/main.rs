@@ -1,11 +1,12 @@
 #![allow(clippy::or_fun_call)]
 
 use anyhow::{Context, Result};
-use clap::Parser;
+use clap::{CommandFactory, Parser};
 use serde_derive::Deserialize;
 use std::env;
 use std::ffi::OsString;
 use std::fs;
+use std::io::{self, Write};
 use std::path::PathBuf;
 use std::process::{self, Command, Stdio};
 
@@ -20,7 +21,12 @@ cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
     disable_help_subcommand = true
 )]
 enum Subcommand {
-    #[command(author, version, about = "Remove Cargo.lock lockfile")]
+    #[command(
+        author,
+        version,
+        about = "Remove Cargo.lock lockfile",
+        disable_version_flag = true
+    )]
     Unlock(Unlock),
 }
 
@@ -29,6 +35,10 @@ struct Unlock {
     /// Path to Cargo.toml
     #[arg(long, value_name = "PATH")]
     manifest_path: Option<PathBuf>,
+
+    /// Print version
+    #[arg(long)]
+    pub version: bool,
 }
 
 #[derive(Deserialize)]
@@ -38,6 +48,12 @@ struct Metadata {
 
 fn main() -> Result<()> {
     let Subcommand::Unlock(opts) = Subcommand::parse();
+
+    if opts.version {
+        let mut stdout = io::stdout();
+        let _ = stdout.write_all(Subcommand::command().render_version().as_bytes());
+        return Ok(());
+    }
 
     let cargo = env::var_os("CARGO").unwrap_or(OsString::from("cargo"));
     let mut command = Command::new(cargo);
