@@ -15,7 +15,7 @@ cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
 #[command(name = "cargo-unlock", bin_name = "cargo", author, version)]
 enum Cli {
     #[command(name = "unlock", author, version, about = "Remove Cargo.lock lockfile")]
-    Rm {
+    Unlock {
         /// Path to Cargo.toml
         #[arg(long, value_name = "PATH")]
         manifest_path: Option<PathBuf>,
@@ -28,7 +28,7 @@ struct Metadata {
 }
 
 fn main() -> Result<()> {
-    let Cli::Rm { manifest_path } = Cli::parse();
+    let Cli::Unlock { manifest_path } = Cli::parse();
 
     let cargo = env::var_os("CARGO").unwrap_or(OsString::from("cargo"));
     let mut command = Command::new(cargo);
