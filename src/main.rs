@@ -13,13 +13,16 @@ cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
 
 #[derive(Parser, Debug)]
 #[command(name = "cargo-unlock", bin_name = "cargo", author, version)]
-enum Cli {
-    #[command(name = "unlock", author, version, about = "Remove Cargo.lock lockfile")]
-    Unlock {
-        /// Path to Cargo.toml
-        #[arg(long, value_name = "PATH")]
-        manifest_path: Option<PathBuf>,
-    },
+enum Subcommand {
+    #[command(author, version, about = "Remove Cargo.lock lockfile")]
+    Unlock(Unlock),
+}
+
+#[derive(Parser, Debug)]
+struct Unlock {
+    /// Path to Cargo.toml
+    #[arg(long, value_name = "PATH")]
+    manifest_path: Option<PathBuf>,
 }
 
 #[derive(Deserialize)]
@@ -28,12 +31,12 @@ struct Metadata {
 }
 
 fn main() -> Result<()> {
-    let Cli::Unlock { manifest_path } = Cli::parse();
+    let Subcommand::Unlock(opts) = Subcommand::parse();
 
     let cargo = env::var_os("CARGO").unwrap_or(OsString::from("cargo"));
     let mut command = Command::new(cargo);
     command.arg("metadata");
-    if let Some(manifest_path) = manifest_path {
+    if let Some(manifest_path) = opts.manifest_path {
         command.arg("--manifest-path");
         command.arg(manifest_path);
     }
@@ -63,5 +66,5 @@ fn main() -> Result<()> {
 
 #[test]
 fn test_cli() {
-    <Cli as clap::CommandFactory>::command().debug_assert();
+    <Subcommand as clap::CommandFactory>::command().debug_assert();
 }
