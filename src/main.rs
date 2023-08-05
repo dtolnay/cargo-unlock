@@ -12,7 +12,13 @@ use std::process::{self, Command, Stdio};
 cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
 
 #[derive(Parser, Debug)]
-#[command(name = "cargo-unlock", bin_name = "cargo", author, version)]
+#[command(
+    name = "cargo-unlock",
+    bin_name = "cargo",
+    author,
+    version,
+    disable_help_subcommand = true
+)]
 enum Subcommand {
     #[command(author, version, about = "Remove Cargo.lock lockfile")]
     Unlock(Unlock),
