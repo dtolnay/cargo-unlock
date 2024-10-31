@@ -18,7 +18,8 @@ cargo_subcommand_metadata::description!("Remove Cargo.lock lockfile");
     bin_name = "cargo",
     author,
     version,
-    disable_help_subcommand = true
+    disable_help_subcommand = true,
+    styles = clap_cargo::style::CLAP_STYLING,
 )]
 enum Subcommand {
     #[command(
