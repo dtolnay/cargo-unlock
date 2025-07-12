@@ -15,7 +15,7 @@ rust-version = "1.70"
 anyhow = "1.0.79"
 cargo-subcommand-metadata = "0.1"
 clap = { version = "4.0", features = ["deprecated", "derive", "wrap_help"] }
-clap-cargo = "0.15"
+clap-cargo = "0.16"
 serde = "1.0.194"
 serde_derive = "1.0.194"
 serde_json = "1.0.110"
