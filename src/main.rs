@@ -34,7 +34,7 @@ enum Subcommand {
 #[derive(Parser, Debug)]
 struct Unlock {
     /// Path to Cargo.toml
-    #[arg(long, value_name = "PATH")]
+    #[arg(short, long, value_name = "PATH")]
     manifest_path: Option<PathBuf>,
 
     /// Print version
